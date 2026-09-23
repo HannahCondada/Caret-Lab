@@ -1,10 +1,10 @@
-# UI Library
+# Caret Dev Lab
 
-A storefront for browsing the `@ui-library/ui` component library before a project installs it.
+A storefront for browsing the `@caret-lab/ui` component library before a project installs it.
 
 ---
 
-Build **UI Library**, a web app developers use to browse a UI library before they import it. It is a shop window, not a checkout. There is no cart, no payment, no account, and no auth.
+Build **Caret Lab**, a web app developers use to browse a UI library before they import it. It is a shop window, not a checkout. There is no cart, no payment, no account, and no auth.
 
 UI Library shows what a project will get if it installs this library. The things a project actually installs are separate from this website. This website only contains and showcases them.
 
