@@ -1,18 +1,18 @@
-# UI Library
+# Caret Library
 
-A storefront for browsing the `@ui-library/ui` component library before a project installs it.
+A storefront for browsing the `@caret-lab/ui` component library before a project installs it.
 
 ---
 
-Build **UI Library**, a web app developers use to browse a UI library before they import it. It is a shop window, not a checkout. There is no cart, no payment, no account, and no auth.
+Build **Caret Library**, a web app developers use to browse a UI library before they import it. It is a shop window, not a checkout. There is no cart, no payment, no account, and no auth.
 
-UI Library shows what a project will get if it installs this library. The things a project actually installs are separate from this website. This website only contains and showcases them.
+Caret Library shows what a project will get if it installs this library. The things a project actually installs are separate from this website. This website only contains and showcases them.
 
 ## Three pieces, and they must not merge
 
-1. **UI Library** — this web app. Its own layout, type, and color. It is the storefront.
-2. **Components** — the products on the shelf. A project imports these from `@ui-library/ui`. The token architecture applies only to these.
-3. **Settings** — also a product on the shelf, also importable, from `@ui-library/ui/settings`. One settings object changes every component inside a project. Settings do not change UI Library’s own chrome.
+1. **Caret Library** — this web app. Its own layout, type, and color. It is the storefront.
+2. **Components** — the products on the shelf. A project imports these from `@caret-lab/ui`. The token architecture applies only to these.
+3. **Settings** — also a product on the shelf, also importable, from `@caret-lab/ui/settings`. One settings object changes every component inside a project. Settings do not change Caret Library’s own chrome.
 
 Do not style the storefront with the component tokens. Do not style a library component with the storefront’s CSS. Do not wrap the storefront in the settings scope.
 
@@ -21,9 +21,9 @@ Do not style the storefront with the component tokens. Do not style a library co
 A consuming project installs the components and the settings runtime, then keeps its own settings values:
 
 ```tsx
-import { Badge, Button, Checkbox, Input, Link, Switch, Textarea } from '@ui-library/ui';
-import '@ui-library/ui/tokens.css';
-import { ThemeScope, type ThemeSettings } from '@ui-library/ui/settings';
+import { Badge, Button, Checkbox, Input, Link, Switch, Textarea } from '@caret-lab/ui';
+import '@caret-lab/ui/tokens.css';
+import { ThemeScope, type ThemeSettings } from '@caret-lab/ui/settings';
 
 const projectSettings: ThemeSettings = {
   /* this project's values, stored by that project */
@@ -46,9 +46,9 @@ export function App() {
 
 `tokens.css` holds the defaults. `ThemeSettings` holds only the overrides for that project. `ThemeScope` writes those overrides as CSS variables on one element. Every library component inside that element reads those variables. A second project imports the same components and the same scope, passes a different `ThemeSettings` object, and looks different. Neither project’s settings are hardcoded inside the components.
 
-UI Library may demonstrate this. The demonstration happens inside a preview frame. UI Library’s header, nav, and page background stay on the storefront’s own styles.
+Caret Library may demonstrate this. The demonstration happens inside a preview frame. Caret Library’s header, nav, and page background stay on the storefront’s own styles.
 
-If you cannot install `@ui-library/ui` from GitHub, build showcase fixtures that match the API below. Put those fixtures in one folder named `showcase`. Do not describe them as the package. The install snippets on the site still show `@ui-library/ui` and `@ui-library/ui/settings`.
+If you cannot install `@caret-lab/ui` from GitHub, build showcase fixtures that match the API below. Put those fixtures in one folder named `showcase`. Do not describe them as the package. The install snippets on the site still show `@caret-lab/ui` and `@caret-lab/ui/settings`.
 
 ## Architecture that every component follows
 
@@ -159,7 +159,7 @@ Settings shown on this page: `positiveActive`, `negativeActive`, `textDefault`, 
 <Link href="#docs">Docs</Link>
 ```
 
-`href` is required. `children` is the link text. The preview anchor must not navigate away from UI Library. Use `href="#docs"` and prevent the default click.
+`href` is required. `children` is the link text. The preview anchor must not navigate away from Caret Library. Use `href="#docs"` and prevent the default click.
 
 Reads: `--link-font-family`, `--link-font-size`, `--link-color`.
 
@@ -167,7 +167,7 @@ Settings shown on this page: `textDefault`, font family, body size.
 
 ## Settings contract
 
-Export this type from `@ui-library/ui/settings`. All fields are optional. Omitted fields keep the `tokens.css` default.
+Export this type from `@caret-lab/ui/settings`. All fields are optional. Omitted fields keep the `tokens.css` default.
 
 ```ts
 type ThemeSettings = {
@@ -229,14 +229,14 @@ A list of eight importable items:
 
 | Item | What the developer is looking at | Where it goes | Import line |
 | --- | --- | --- | --- |
-| Button | Action control | `/catalog/button` | `import { Button } from '@ui-library/ui'` |
-| Input | Labeled text field | `/catalog/input` | `import { Input } from '@ui-library/ui'` |
-| Textarea | Labeled multiline field | `/catalog/textarea` | `import { Textarea } from '@ui-library/ui'` |
-| Checkbox | Labeled check | `/catalog/checkbox` | `import { Checkbox } from '@ui-library/ui'` |
-| Switch | Labeled on/off | `/catalog/switch` | `import { Switch } from '@ui-library/ui'` |
-| Badge | Status label | `/catalog/badge` | `import { Badge } from '@ui-library/ui'` |
-| Link | Text link | `/catalog/link` | `import { Link } from '@ui-library/ui'` |
-| Settings | The import that changes all of the above | `/catalog/settings` | `import { ThemeScope } from '@ui-library/ui/settings'` |
+| Button | Action control | `/catalog/button` | `import { Button } from '@caret-lab/ui'` |
+| Input | Labeled text field | `/catalog/input` | `import { Input } from '@caret-lab/ui'` |
+| Textarea | Labeled multiline field | `/catalog/textarea` | `import { Textarea } from '@caret-lab/ui'` |
+| Checkbox | Labeled check | `/catalog/checkbox` | `import { Checkbox } from '@caret-lab/ui'` |
+| Switch | Labeled on/off | `/catalog/switch` | `import { Switch } from '@caret-lab/ui'` |
+| Badge | Status label | `/catalog/badge` | `import { Badge } from '@caret-lab/ui'` |
+| Link | Text link | `/catalog/link` | `import { Link } from '@caret-lab/ui'` |
+| Settings | The import that changes all of the above | `/catalog/settings` | `import { ThemeScope } from '@caret-lab/ui/settings'` |
 
 Each item shows its name, one sentence, and that import line.
 
@@ -253,7 +253,7 @@ Button, Input, Textarea, Checkbox, Switch, Badge, and Link share one layout.
 
 ### `/catalog/settings`
 
-This page is the product page for the importable settings, not a global theme for UI Library.
+This page is the product page for the importable settings, not a global theme for Caret Library.
 
 - Explain in one short paragraph: settings are imported into the developer’s project, stored by that project, and applied with `ThemeScope` around that project’s tree. One object restyles every component in the shelf.
 - Show the `ThemeSettings` type and the `ThemeScope` usage snippet from the top of this prompt.
@@ -265,17 +265,17 @@ This page is the product page for the importable settings, not a global theme fo
 
 Exact steps, in this order:
 
-1. Show the install command `pnpm add @ui-library/ui`. This is the package name the catalog displays. Do not show a GitHub repo name, a company name, or a second package name.
-2. Import `@ui-library/ui/tokens.css` once at the app entry.
-3. Import the components you use from `@ui-library/ui`: `Badge`, `Button`, `Checkbox`, `Input`, `Link`, `Switch`, `Textarea`.
-4. Import `ThemeScope` and `ThemeSettings` from `@ui-library/ui/settings`.
+1. Show the install command `pnpm add @caret-lab/ui`. This is the package name the catalog displays. Do not show a GitHub repo name, a company name, or a second package name.
+2. Import `@caret-lab/ui/tokens.css` once at the app entry.
+3. Import the components you use from `@caret-lab/ui`: `Badge`, `Button`, `Checkbox`, `Input`, `Link`, `Switch`, `Textarea`.
+4. Import `ThemeScope` and `ThemeSettings` from `@caret-lab/ui/settings`.
 5. Keep the settings object in the consuming project. Pass it to one `ThemeScope` around that project’s UI.
 
-State that UI Library itself is not installed. The website is the showcase. The package is what gets installed.
+State that Caret Library itself is not installed. The website is the showcase. The package is what gets installed.
 
 ## Storefront behavior
 
-- Desktop: a top bar with the name **UI Library** and links to Catalog, Settings, and Install. Content below.
+- Desktop: a top bar with the name **Caret Library** and links to Catalog, Settings, and Install. Content below.
 - Narrow screens: the same destinations remain reachable. Do not drop the preview or the settings controls.
 - Preview frames stay mounted while the settings controls on that page change. Changing a control must not remount the frame and lose the other overrides.
 - Each component page starts from defaults when opened. Do not leak one page’s preview overrides into the storefront or into another page.
@@ -287,12 +287,12 @@ Design the storefront yourself. It should read as a catalog a developer can scan
 
 Keep the preview frame visually quiet so the component is what they are judging. Settings controls are a working form: label, current value, and the result in the frame. They are not a second marketing page.
 
-Do not use the words green, red, Prism, Design Lab, or Caret. The product name is UI Library. The package name is `@ui-library/ui`.
+Do not use the words green, red, Prism, or Design Lab. The product name is Caret Library. The package name is `@caret-lab/ui`.
 
 ## Done when
 
 - The catalog lists Button, Input, Textarea, Checkbox, Switch, Badge, Link, and Settings, plus Home and Install.
-- Each component is shown as an import from `@ui-library/ui`, with props and CSS variables limited to its contract.
+- Each component is shown as an import from `@caret-lab/ui`, with props and CSS variables limited to its contract.
 - The storefront’s header does not change color when a preview setting changes.
 - On the Settings page, one settings change updates every component in the frame that reads that variable, and nothing outside the frame.
 - Import snippets match the contract in this prompt.

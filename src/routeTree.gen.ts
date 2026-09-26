@@ -12,10 +12,12 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CatalogRouteImport } from './routes/catalog'
 import { Route as InstallRouteImport } from './routes/install'
+import { Route as ShowcaseRouteImport } from './routes/showcase'
 import { Route as CatalogIndexRouteImport } from './routes/catalog.index'
 import { Route as CatalogAlertRouteImport } from './routes/catalog.alert'
 import { Route as CatalogAvatarRouteImport } from './routes/catalog.avatar'
 import { Route as CatalogBadgeRouteImport } from './routes/catalog.badge'
+import { Route as CatalogButtonRouteImport } from './routes/catalog.button'
 import { Route as CatalogCheckboxRouteImport } from './routes/catalog.checkbox'
 import { Route as CatalogComboboxRouteImport } from './routes/catalog.combobox'
 import { Route as CatalogCurrencyFieldRouteImport } from './routes/catalog.currency-field'
@@ -52,6 +54,11 @@ const InstallRoute = InstallRouteImport.update({
   path: '/install',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ShowcaseRoute = ShowcaseRouteImport.update({
+  id: '/showcase',
+  path: '/showcase',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CatalogIndexRoute = CatalogIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -70,6 +77,11 @@ const CatalogAvatarRoute = CatalogAvatarRouteImport.update({
 const CatalogBadgeRoute = CatalogBadgeRouteImport.update({
   id: '/badge',
   path: '/badge',
+  getParentRoute: () => CatalogRoute,
+} as any)
+const CatalogButtonRoute = CatalogButtonRouteImport.update({
+  id: '/button',
+  path: '/button',
   getParentRoute: () => CatalogRoute,
 } as any)
 const CatalogCheckboxRoute = CatalogCheckboxRouteImport.update({
@@ -177,9 +189,11 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/catalog': typeof CatalogRouteWithChildren
   '/install': typeof InstallRoute
+  '/showcase': typeof ShowcaseRoute
   '/catalog/alert': typeof CatalogAlertRoute
   '/catalog/avatar': typeof CatalogAvatarRoute
   '/catalog/badge': typeof CatalogBadgeRoute
+  '/catalog/button': typeof CatalogButtonRoute
   '/catalog/checkbox': typeof CatalogCheckboxRoute
   '/catalog/combobox': typeof CatalogComboboxRoute
   '/catalog/currency-field': typeof CatalogCurrencyFieldRoute
@@ -205,9 +219,11 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/install': typeof InstallRoute
+  '/showcase': typeof ShowcaseRoute
   '/catalog/alert': typeof CatalogAlertRoute
   '/catalog/avatar': typeof CatalogAvatarRoute
   '/catalog/badge': typeof CatalogBadgeRoute
+  '/catalog/button': typeof CatalogButtonRoute
   '/catalog/checkbox': typeof CatalogCheckboxRoute
   '/catalog/combobox': typeof CatalogComboboxRoute
   '/catalog/currency-field': typeof CatalogCurrencyFieldRoute
@@ -235,9 +251,11 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/catalog': typeof CatalogRouteWithChildren
   '/install': typeof InstallRoute
+  '/showcase': typeof ShowcaseRoute
   '/catalog/alert': typeof CatalogAlertRoute
   '/catalog/avatar': typeof CatalogAvatarRoute
   '/catalog/badge': typeof CatalogBadgeRoute
+  '/catalog/button': typeof CatalogButtonRoute
   '/catalog/checkbox': typeof CatalogCheckboxRoute
   '/catalog/combobox': typeof CatalogComboboxRoute
   '/catalog/currency-field': typeof CatalogCurrencyFieldRoute
@@ -266,9 +284,11 @@ export interface FileRouteTypes {
     | '/'
     | '/catalog'
     | '/install'
+    | '/showcase'
     | '/catalog/alert'
     | '/catalog/avatar'
     | '/catalog/badge'
+    | '/catalog/button'
     | '/catalog/checkbox'
     | '/catalog/combobox'
     | '/catalog/currency-field'
@@ -294,9 +314,11 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/install'
+    | '/showcase'
     | '/catalog/alert'
     | '/catalog/avatar'
     | '/catalog/badge'
+    | '/catalog/button'
     | '/catalog/checkbox'
     | '/catalog/combobox'
     | '/catalog/currency-field'
@@ -323,9 +345,11 @@ export interface FileRouteTypes {
     | '/'
     | '/catalog'
     | '/install'
+    | '/showcase'
     | '/catalog/alert'
     | '/catalog/avatar'
     | '/catalog/badge'
+    | '/catalog/button'
     | '/catalog/checkbox'
     | '/catalog/combobox'
     | '/catalog/currency-field'
@@ -353,6 +377,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CatalogRoute: typeof CatalogRouteWithChildren
   InstallRoute: typeof InstallRoute
+  ShowcaseRoute: typeof ShowcaseRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -376,6 +401,13 @@ declare module '@tanstack/react-router' {
       path: '/install'
       fullPath: '/install'
       preLoaderRoute: typeof InstallRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/showcase': {
+      id: '/showcase'
+      path: '/showcase'
+      fullPath: '/showcase'
+      preLoaderRoute: typeof ShowcaseRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/catalog/': {
@@ -404,6 +436,13 @@ declare module '@tanstack/react-router' {
       path: '/badge'
       fullPath: '/catalog/badge'
       preLoaderRoute: typeof CatalogBadgeRouteImport
+      parentRoute: typeof CatalogRoute
+    }
+    '/catalog/button': {
+      id: '/catalog/button'
+      path: '/button'
+      fullPath: '/catalog/button'
+      preLoaderRoute: typeof CatalogButtonRouteImport
       parentRoute: typeof CatalogRoute
     }
     '/catalog/checkbox': {
@@ -553,6 +592,7 @@ interface CatalogRouteChildren {
   CatalogAlertRoute: typeof CatalogAlertRoute
   CatalogAvatarRoute: typeof CatalogAvatarRoute
   CatalogBadgeRoute: typeof CatalogBadgeRoute
+  CatalogButtonRoute: typeof CatalogButtonRoute
   CatalogCheckboxRoute: typeof CatalogCheckboxRoute
   CatalogComboboxRoute: typeof CatalogComboboxRoute
   CatalogCurrencyFieldRoute: typeof CatalogCurrencyFieldRoute
@@ -580,6 +620,7 @@ const CatalogRouteChildren: CatalogRouteChildren = {
   CatalogAlertRoute: CatalogAlertRoute,
   CatalogAvatarRoute: CatalogAvatarRoute,
   CatalogBadgeRoute: CatalogBadgeRoute,
+  CatalogButtonRoute: CatalogButtonRoute,
   CatalogCheckboxRoute: CatalogCheckboxRoute,
   CatalogComboboxRoute: CatalogComboboxRoute,
   CatalogCurrencyFieldRoute: CatalogCurrencyFieldRoute,
@@ -610,6 +651,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CatalogRoute: CatalogRouteWithChildren,
   InstallRoute: InstallRoute,
+  ShowcaseRoute: ShowcaseRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

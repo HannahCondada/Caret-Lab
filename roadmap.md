@@ -1,6 +1,6 @@
 # Roadmap
 
-- [x] Build the approved UI Library storefront in the specified futuristic palette.
+- [x] Build the approved Caret Library storefront in the specified futuristic palette.
 - [x] Implement isolated showcase components and ThemeScope settings behavior.
 - [x] Add every requested page, exact contract content, and unique metadata.
 - [x] Verify routes, live settings isolation, desktop, and narrow-screen layouts.
